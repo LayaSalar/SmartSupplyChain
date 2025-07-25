@@ -6,4 +6,5 @@ global using BuildingBlocks.CQRS;
 global using Supplier.API.Models;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Routing;
+global using Supplier.API.Exceptions;
 global using Marten.Pagination;
