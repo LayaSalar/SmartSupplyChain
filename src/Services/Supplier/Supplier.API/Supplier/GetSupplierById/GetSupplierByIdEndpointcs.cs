@@ -12,7 +12,7 @@ namespace Supplier.API.Supplier.GetSupplierById
         {
             app.MapGet("/Suppliers/{id}/", async (Guid Id, ISender sender) =>
          {
-             var result = await sender.Send(new GetProductByIDQuery(Id));
+             var result = await sender.Send(new GetSupplierByIDQuery(Id));
              var response = result.Adapt<GetSupplierByIdResponse>();
              return Results.Ok(response);
 
