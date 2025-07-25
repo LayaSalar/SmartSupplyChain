@@ -9,7 +9,7 @@ public class GetSupplierByIdHandler(IDocumentSession session , ILogger<GetSuppli
     {
         logger.LogInformation("GetSupplierByIdHandler.Handle Handle called with {@query}", query);
         var supplier =  await session.LoadAsync<Models.Supplier>(query.Id, cancellationToken);
-        if (supplier != null)
+        if (supplier is null)
         {
             throw new SupplierNotFoundException();
         }

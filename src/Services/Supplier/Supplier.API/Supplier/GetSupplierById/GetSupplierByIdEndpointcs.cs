@@ -10,7 +10,7 @@ namespace Supplier.API.Supplier.GetSupplierById
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/Supplier/{id}/", async (Guid Id, ISender sender) =>
+            app.MapGet("/Suppliers/{id}/", async (Guid Id, ISender sender) =>
          {
              var result = await sender.Send(new GetProductByIDQuery(Id));
              var response = result.Adapt<GetSupplierByIdResponse>();
@@ -18,7 +18,7 @@ namespace Supplier.API.Supplier.GetSupplierById
 
          })
 
-        .WithName("GetAllSupplier")
+        .WithName("GetSupplierById")
         .WithSummary("Create a new supplier")
         .WithDescription("Creates a new supplier and returns its ID")
         .Produces<GetSupplierByIdResponse>(StatusCodes.Status201Created)
