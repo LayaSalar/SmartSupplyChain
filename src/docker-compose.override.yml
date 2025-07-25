@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  supplierdb:
+    container_name: supplierdb
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_DB=supplierdb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - supplier_pgdata:/var/lib/postgresql/data
+
+volumes:
+  supplier_pgdata:

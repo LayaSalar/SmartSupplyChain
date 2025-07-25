@@ -13,6 +13,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Services/Supplier/Supplier.API/Supplier.API.csproj", "Services/Supplier/Supplier.API/"]
+COPY ["BuildingBlocks/BuildingBlocks/BuildingBlocks.csproj", "BuildingBlocks/BuildingBlocks/"]
 RUN dotnet restore "./Services/Supplier/Supplier.API/Supplier.API.csproj"
 COPY . .
 WORKDIR "/src/Services/Supplier/Supplier.API"

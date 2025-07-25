@@ -1,0 +1,9 @@
+﻿global using Carter;
+global using Mapster;
+global using MediatR;
+global using Marten;
+global using BuildingBlocks.CQRS;
+global using Supplier.API.Models;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Routing;
+global using Marten.Pagination;

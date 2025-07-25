@@ -1,9 +1,7 @@
-﻿using MediatR;
-
-namespace Supplier.API.Supplier.CreateSupplier
+﻿namespace Supplier.API.Supplier.CreateSupplier
 {
     public record CreateSupplierCommand(
-               string Name,
+         string Name,
         List<string> Category,
         string ContactPerson,
         string PhoneNumber,
@@ -11,19 +9,39 @@ namespace Supplier.API.Supplier.CreateSupplier
         string Address,
         string EconomicID,
         bool IsActive,
-        int Rate,
-        DateTime CreatedAt,
-        DateTime? UpdatedAt
-    ):IRequest<CreateSupplierResult>;
+        int Rate
+    ) : ICommand<CreateSupplierResult>;
 
     public record CreateSupplierResult(Guid Id);
 
-    internal class CreateSupplierHandler : IRequestHandler<CreateSupplierCommand, CreateSupplierResult>
+    public class CreateSupplierHandler(IDocumentSession session) :  ICommandHandler<CreateSupplierCommand, CreateSupplierResult>
     {
-        public Task<CreateSupplierResult> Handle(CreateSupplierCommand request, CancellationToken cancellationToken)
+     
+        public async Task<CreateSupplierResult> Handle(CreateSupplierCommand command, CancellationToken cancellationToken)
         {
             //business Logic to create a product
-            throw new NotImplementedException();
+
+            //Create Product From Command Object 
+            var supplier = new Models.Supplier
+            {
+                Id = Guid.NewGuid(),
+                Name = command.Name,
+                Category = command.Category,
+                ContactPerson = command.ContactPerson,
+                PhoneNumber = command.PhoneNumber,
+                Email = command.Email,
+                Address = command.Address,
+                EconomicID = command.EconomicID,
+                IsActive = command.IsActive,
+                Rate = command.Rate
+            };
+
+            //Save to Database 
+            session.Store( supplier );
+            await session.SaveChangesAsync(cancellationToken);
+            // return CreateSupplierResult as Result
+            return new CreateSupplierResult(supplier.Id );
+
         }
     }
 }

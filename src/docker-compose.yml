@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  supplierdb:
+    container_name: supplierdb
+    image: postgres:15
+ 
+
+volumes:
+  supplier_pgdata:
