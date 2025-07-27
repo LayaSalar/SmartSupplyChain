@@ -5,7 +5,7 @@
         public Guid Id { get; set; }
         public string Name { get; set; } = default!;
 
-        public List<string> Category = new();
+        public List<string> Category { get; set; } = new();
         public string ContactPerson { get; set; } = default!;
         public string PhoneNumber { get; set; } = default!;
         public string Email { get; set; } = default!;
